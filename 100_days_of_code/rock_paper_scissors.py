@@ -35,7 +35,7 @@ scissors = '''
 # Store user input
 print("Hello! Let's play Rock-Paper-Scissors!\n")
 
-while True:
+while True: # Main game loop
     player_choice = input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.\n")
     if player_choice == "0":
         player_choice = rock
@@ -65,7 +65,9 @@ cpu_choice_string = possible_cpu_choices_string[index]
 # Compare both choices and provide player feedback
 print("I'm thinking...")
 time.sleep(3)
-print("Okay, let's go on 3...")
+print("Okay, I'm ready!")
+time.sleep(1)
+print("3...")
 time.sleep(1)
 print("2...")
 time.sleep(1)
