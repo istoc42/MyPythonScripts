@@ -25,7 +25,7 @@ while True:
         break
 
 #If no, Find the highest bidder and declare them the winner
-highest_bidder = max(auction, key=auction.get)  
-highest_bid = auction[highest_bidder] 
+highest_bidder = max(auction, key=auction.get)
+highest_bid = auction[highest_bidder]
 
 print(f"The highest bidder was {highest_bidder}, with a bid of £{highest_bid}. Congratulations!")
