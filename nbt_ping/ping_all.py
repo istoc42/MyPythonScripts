@@ -1,40 +1,38 @@
 import platform
 import subprocess
-from w10_master_list import asset_list as al
+from w10_master_list import cell_path_master_list as ml
 
 successful = []
 
 failed = []
 
-def ping_all():
-    for asset in al:
-        parameter = '-n' if platform.system().lower()=='windows' else '-c'
+for pc in ml:
+    parameter = '-n' if platform.system().lower()=='windows' else '-c'
 
-        host = asset
+    host = pc["asset_num"]
 
-        command = ['ping', parameter, '1', host]
-        response = subprocess.call(command)
+    command = ['ping', parameter, '1', host]
+    response = subprocess.call(command)
 
+    if response == 0:
+        print("Success")
+        successful.append(pc)
         
-
-        if response == 0:
-            print("Success")
-            successful.append(
-                {
-                    "asset_num": host,
-                }
-            )
-        else:
-            print("Failed")
-            failed.append(
-                {
-                    "asset_num": host,
-                }
-            )
-
-ping_all()
+    else:
+        print("Failed")
+        failed.append(pc)
 
 print("Successful pings:")
 print(successful)
 print("\nFailed pings:")
 print(failed)
+
+success_textfile = open("successful.txt", "w")
+for element in successful:
+    success_textfile.write(element + "\n")
+success_textfile.close
+
+fail_textfile = open("failed.txt", "w")
+for element in failed:
+    fail_textfile.write(element + "\n")
+fail_textfile.close

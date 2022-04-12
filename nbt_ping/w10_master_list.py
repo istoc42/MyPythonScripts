@@ -969,3 +969,8 @@ asset_list = [
     'NBT27186',
     'NBT27187',
 ]
+
+ml = cell_path_master_list
+
+for pc in ml:
+    print(pc)
