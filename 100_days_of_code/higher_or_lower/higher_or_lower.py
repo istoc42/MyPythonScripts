@@ -36,8 +36,31 @@ print(vs)
 
 print("Against B: " + str(option_b['name']) + ", a " + str(option_b['description']) + " from " + str(option_b['country']) + ".")
 
-# TODO Ask player to choose if either A or B has the highest followers 
+# Function to compare followers of each choice and return the winner
+def compare_followers(comparison_a, comparison_b):
+    followers_a = comparison_a['follower_count']
+    followers_b = comparison_b['follower_count']
 
-# TODO Function to compare followers of each choice and return the winner
+    if followers_a > followers_b:
+        result = "A"
+        return result
+    else:
+        result = "B"
+        return result
+
+# print the followers of each option
+print((str(option_a['name'] + " has " + str(option_a['follower_count']) + " million followers")))
+print((str(option_b['name'] + " has " + str(option_b['follower_count']) + " million followers")))
+
+# Assign the winner to a variable
+winner = compare_followers(option_a, option_b)
+
+# Print message based on the winner
+if winner == "A":
+    print(str(option_a['name'] + " has the most followers"))
+else:
+    print(str(option_b['name'] + " has the most followers"))
+
+# TODO Ask player to choose if either A or B has the highest followers 
 
 # TODO Change the winner to option A and select a new option B 
