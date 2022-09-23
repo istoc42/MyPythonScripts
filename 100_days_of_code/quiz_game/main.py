@@ -1,8 +1,19 @@
-class User:
-    pass
+from question_model import Question
+from data import question_data
+from quiz_brain import QuizBrain
 
-user_1 = User() # "user_1" is an object made from the "User" class.
-user_1.id = "001"
-user_1.username = "Derrick"
+question_bank = []
+for question in question_data:
+    question_text = question["question"]
+    question_answer = question["correct_answer"]
+    new_question = Question(question_text, question_answer)
+    question_bank.append(new_question)
 
-print(user_1.username)
+quiz = QuizBrain(question_bank)
+
+while quiz.still_has_questions():
+    quiz.next_question()
+
+print("You've completed the quiz!")
+print(f"You've scored {quiz.score} out of {len(quiz.question_list)}!")
+
