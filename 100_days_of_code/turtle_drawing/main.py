@@ -25,16 +25,19 @@ screen.colormode(255)
 #     timmy.forward(10)
 #     timmy.pd()
 
-# Draw different shapes inside each other
-sides = 4
-while sides < 21:
+def random_color():
     # Get random rgb values
     r = random.randrange(0, 257, 10)
     g = random.randrange(0, 257, 10)
     b = random.randrange(0, 257, 10)
-    # Change pen to random color
+    # Change pen and turtle to random color
     timmy.color(r, g, b)
     timmy.pencolor(r, g, b)
+
+# Draw different shapes inside each other
+sides = 4
+while sides < 10:
+    random_color()    
     # Calculate angle of shapes 
     angle = 360 / sides
     for x in range(sides):
