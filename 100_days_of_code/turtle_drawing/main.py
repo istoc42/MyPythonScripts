@@ -33,11 +33,6 @@ def random_color():
     # Change pen and turtle to random color
     timmy.color(r, g, b)
     timmy.pencolor(r, g, b)
-    
-def random_direction():
-    directions = [90, 180, 270]
-    direction_choice = random.choice(directions)
-    return direction_choice
 
 # Draw different shapes inside each other
 # sides = 4
@@ -53,16 +48,16 @@ def random_direction():
 
 # Draw a random walk
 #  Speed up the turtle
-timmy.speed(10)
+timmy.speed(0)
 # Increase line thickness
 timmy.pensize(15)
 # Generate random walk with same forward distance but random directions
+directions = [0, 90, 180, 270]
 i = 0
 while i <= 100:
     random_color()
-    direction = random_direction()
-    timmy.forward(50)
-    timmy.right(direction)
+    timmy.forward(30)
+    timmy.setheading(random.choice(directions))
     i += 1
 
 screen.exitonclick()
