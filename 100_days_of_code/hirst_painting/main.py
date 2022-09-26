@@ -30,25 +30,17 @@ timmy = Turtle()
 timmy.shape("turtle")
 timmy.speed("fastest")
 timmy.pensize(20)
+timmy.hideturtle()
 
 ### Turtle commands
-
-# Starting position to bottom left corner
 pos_x = -300
 pos_y = -300
+
 for i in range(1, 11):
     draw_row_of_dots(pos_x, pos_y, 10)
     # pos_x += 100
     pos_y += 65
     print(f'x = {pos_x}')
     print(f'y = {pos_y}')
-
-
-
-
-
-
-
-
 
 screen.exitonclick()
