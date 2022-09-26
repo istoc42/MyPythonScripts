@@ -48,17 +48,27 @@ def random_color():
 
 # Draw a random walk
 #  Speed up the turtle
-timmy.speed(0)
-# Increase line thickness
-timmy.pensize(15)
-# Generate random walk with same forward distance but random directions
-directions = [0, 90, 180, 270]
-i = 0
-while i <= 100:
+# timmy.speed(0)
+# # Increase line thickness
+# timmy.pensize(15)
+# # Generate random walk with same forward distance but random directions
+# directions = [0, 90, 180, 270]
+# i = 0
+# while i <= 100:
+#     random_color()
+#     timmy.forward(30)
+#     timmy.setheading(random.choice(directions))
+#     i += 1
+
+# Make a spirograph
+timmy.speed("fastest")
+
+x = 0
+while x <= 360:
     random_color()
-    timmy.forward(30)
-    timmy.setheading(random.choice(directions))
-    i += 1
+    timmy.circle(100)
+    x += 5
+    timmy.setheading(x)
 
 screen.exitonclick()
 
