@@ -1,4 +1,4 @@
-from turtle import Turtle, Screen
+from turtle import Screen
 from paddle import Paddle
 from net import Net
 from ball import Ball
@@ -10,20 +10,20 @@ import time
 # Create and move a paddle
 # Create another paddle
 # Create the ball and make it move
-    # TODO Make ball move randomly
 # TODO Detect collison with wall and bounce
 # TODO Detect collision with paddle
 # Detect when paddle misses
 # Keep score
 
 screen = Screen()
+screen.title("Pong")
 screen.bgcolor("black")
-screen.screensize(canvheight=300, canvwidth=300)
+screen.setup(width=800, height=600)
 screen.tracer(0)
 
 net = Net()
-l_paddle = Paddle("left")
-r_paddle = Paddle("right")
+l_paddle = Paddle((-370, 0))
+r_paddle = Paddle((370, 0))
 ball = Ball()
 scoreboard = Scoreboard()
 
@@ -36,34 +36,49 @@ screen.onkeypress(r_paddle.move_paddle_down, "Down")
 
 # Main game loop
 game_on = True
-last_point_to_left = True
 while game_on:
+    time.sleep(ball.move_speed)
     screen.update()
-    time.sleep(0.001)
-    
-    # Choose which direction ball moves at start of round
-    if last_point_to_left:
-        ball.move_right()
-    else:
-        ball.move_left()
-    
+    ball.move()
+
+    # Detect top and bottom wall collision
+    if ball.ycor() > 275:
+        print("Ball hit the top wall")
+        ball.moving_up = False
+
+    if ball.ycor() < -275:
+        print("Ball hit the bottom wall") 
+        ball.moving_up = True
+
     # Detect paddle collision
-    if ball.distance(r_paddle) < 40:
-        ball.setheading(180)
+    if ball.distance(r_paddle) < 20:
+        print("Ball hit right paddle")
+        ball.moving_right = False
+        ball.move_speed *= 0.9
         
-    if ball.distance(l_paddle) < 40:
-        ball.setheading(0)
-        
+    if ball.distance(l_paddle) < 20:
+        print("Ball hit left paddle")
+        ball.moving_right = True   
+        ball.move_speed *= 0.9
+  
+    if ball.xcor() > 350 and ball.distance(r_paddle) < 50:
+        print("Ball hit right paddle")
+        ball.moving_right = False
+    
+    if ball.xcor() < -350 and ball.distance(l_paddle) < 50:
+        print("Ball hit left paddle")
+        ball.moving_right = True
+
     # Detect paddle miss
     if ball.xcor() > 400:
         scoreboard.increase_l_score()
         ball.ball_refresh()
-        last_point_to_left = True
+        ball.moving_right = False
         
     if ball.xcor() < -400:
         scoreboard.increase_r_score()
         ball.ball_refresh()
-        last_point_to_left = False
+        ball.moving_right = True
         
     
     

@@ -8,13 +8,30 @@ class Ball(Turtle):
         self.shape("circle")
         self.color("white")
         self.penup()
+        self.moving_right = True
+        self.moving_up = True
+        self.move_speed = 0.05
     
     def ball_refresh(self):
         self.goto(0, 0)
         time.sleep(1)
+        self.move_speed = 0.1
         
+    def move(self):
+        if self.moving_right == True:
+            new_x = self.xcor() + 10
+        else:
+            new_x = self.xcor() - 10
+
+        if self.moving_up == True:
+            new_y = self.ycor() + 10
+        else:
+            new_y = self.ycor() - 10
+       
+        self.goto(new_x, new_y)
+
     def move_right(self):
-        self.forward(5)
+        self.setheading(0)
     
     def move_left(self):
-        self.backward(5)
+        self.setheading(180)
