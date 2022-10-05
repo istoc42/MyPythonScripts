@@ -5,16 +5,6 @@ from ball import Ball
 from scoreboard import Scoreboard
 import time
 
-### TO-DO list ###
-# Create the Screen
-# Create and move a paddle
-# Create another paddle
-# Create the ball and make it move
-# TODO Detect collison with wall and bounce
-# TODO Detect collision with paddle
-# Detect when paddle misses
-# Keep score
-
 screen = Screen()
 screen.title("Pong")
 screen.bgcolor("black")
