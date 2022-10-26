@@ -31,4 +31,3 @@ passed_students = {
     for (student, grade) in student_grades.items() if grade >= 60
 }
 print(passed_students)
-
