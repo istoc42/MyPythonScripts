@@ -49,9 +49,6 @@ def generate_csv():
             # Clear all fields for next use
             clear_all_fields()
 
-        # Hardcoded file path
-        # file_list = [f for f in listdir("L:\Cellular_Pathology\TalkingPoint Server\Outsourcing\Import Completed") if isfile(join("L:\Cellular_Pathology\TalkingPoint Server\Outsourcing\Import Completed", f))]
-
 # ---------------------------- UI SETUP ------------------------------- #
 FONT = "Arial", 14
 
