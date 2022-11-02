@@ -1,5 +1,5 @@
-from os import listdir, getcwd 
-from os.path import isfile, join
+from os import listdir, getcwd, startfile
+from os.path import isfile, join, realpath
 import pandas as pd
 from tkinter import *
 from tkinter import messagebox
@@ -37,6 +37,14 @@ def generate_csv():
                 # Export dataframe as csv to output path
                 df.to_csv(f'{output_path}/{csv_name_entry.get()}', index=False)
                 
+                # Ask user if they want to open the directory the file was created in
+                is_yes = messagebox.askyesno("CSV created successfully", f"The file '{csv_name_entry.get()}' was created at {output_path}.\nWould you like to open this directory?")
+                
+                if is_yes:
+                    # Open directory where file was made.
+                     real_path = realpath(output_path)
+                     startfile(real_path)
+                
                 # Clear all fields for next use
                 clear_all_fields()  
         else:   
@@ -46,16 +54,26 @@ def generate_csv():
             # Export dataframe as csv to output path
             df.to_csv(f'{output_path}/{csv_name_entry.get()}', index=False)
 
+            # Ask user if they want to open the directory the file was created in
+            is_yes = messagebox.askyesno("CSV created successfully", f"The file '{csv_name_entry.get()}' was created at {output_path}.\nWould you like to open this directory?")
+            
+            if is_yes:
+                # Open directory where file was made.
+                    real_path = realpath(output_path)
+                    startfile(real_path)
+
             # Clear all fields for next use
             clear_all_fields()
 
 # ---------------------------- UI SETUP ------------------------------- #
 FONT = "Arial", 14
 
+# Window
 window = Tk()
 window.title("File Name Reader")
 window.config(width=650, height=500, padx=40, pady=40)
 
+# Labels
 input_label = Label(text="Enter directory to read: ", font=FONT)
 input_label.grid(column=0, row=1)
 
@@ -65,6 +83,7 @@ output_label.grid(column=0, row=3)
 csv_name_label = Label(text="Enter desired CSV filename: (Please include .csv suffix)", font=FONT)
 csv_name_label.grid(column=0, row=5)
 
+# Entrys
 input_entry = Entry(width=37, font=FONT)
 input_entry.grid(column=0, row=2)
 input_entry.focus()
@@ -75,9 +94,10 @@ output_entry.grid(column=0, row=4)
 csv_name_entry = Entry(width=37, font=FONT)
 csv_name_entry.grid(column=0, row=6)
 
+# Buttons
 generate_csv_btn = Button(text="Generate CSV", font=FONT, command=generate_csv)
 generate_csv_btn.grid(column=0, row=7)
 
 
-
+# Always keep at bottom of code
 window.mainloop()
