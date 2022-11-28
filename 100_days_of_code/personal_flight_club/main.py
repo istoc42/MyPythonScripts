@@ -22,10 +22,8 @@ dm = DataManager()
 
 for city in sheet_data:
     if city['iataCode'] == '':
-        result = fs.get_iataCode()
+        iata = fs.get_iataCode(city['city'])
         city_id = city['id']
-        city['iataCode'] = result
-        # print(city_id, result)
-        dm.update_row(city_id, result)
-
+        city['iataCode'] = iata
+        dm.update_row(city_id, iata)
 
